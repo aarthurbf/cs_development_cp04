@@ -3,31 +3,19 @@ using RevisaoCodigoApp.Models;
 
 namespace RevisaoCodigoApp.Collections;
 
-/// <summary>
-/// Painel genérico que centraliza todas as estruturas de dados do sistema.
-/// T deve ser SolicitacaoMudanca ou uma subclasse.
-/// 
-/// Estruturas de dados utilizadas:
-///   Queue&lt;T&gt;                        — FilaEspera: ordem FIFO de revisão
-///   Stack&lt;string&gt;                   — HistoricoDecisoes: registro reverso de decisões
-///   Dictionary&lt;int, Desenvolvedor&gt;  — Desenvolvedores: acesso por Id
-///   List&lt;Revisao&gt;                   — RevisoesRealizadas: histórico completo
-/// </summary>
 public class PainelRevisoes<T> where T : SolicitacaoMudanca
 {
-    // ── Estruturas de dados exigidas ───────────────────────────────────────────
+    //  Estruturas de dados
     public Queue<T> FilaEspera { get; } = new();
     public Stack<string> HistoricoDecisoes { get; } = new();
     public Dictionary<int, Desenvolvedor> Desenvolvedores { get; } = new();
     public List<Revisao> RevisoesRealizadas { get; } = new();
 
-    // ── Catálogo de solicitações (todas, independente do status) ──────────────
+    //  Catálogo de solicitações (todas, independente do status) 
     private readonly List<T> _todasSolicitacoes = new();
     public IReadOnlyList<T> TodasSolicitacoes => _todasSolicitacoes.AsReadOnly();
 
-    // ──────────────────────────────────────────────────────────────────────────
     //  Desenvolvedores
-    // ──────────────────────────────────────────────────────────────────────────
 
     /// <summary>
     /// Registra um desenvolvedor no painel (Dictionary por Id).
@@ -39,9 +27,7 @@ public class PainelRevisoes<T> where T : SolicitacaoMudanca
         Desenvolvedores[dev.Id] = dev;
     }
 
-    // ──────────────────────────────────────────────────────────────────────────
     //  Solicitações
-    // ──────────────────────────────────────────────────────────────────────────
 
     /// <summary>
     /// Registra uma solicitação no catálogo geral sem enviá-la para a fila.
@@ -63,9 +49,7 @@ public class PainelRevisoes<T> where T : SolicitacaoMudanca
         FilaEspera.Enqueue(solicitacao);
     }
 
-    // ──────────────────────────────────────────────────────────────────────────
     //  Revisões
-    // ──────────────────────────────────────────────────────────────────────────
 
     /// <summary>
     /// Retira a próxima solicitação da fila (Dequeue), cria uma Revisao,
@@ -102,9 +86,7 @@ public class PainelRevisoes<T> where T : SolicitacaoMudanca
         HistoricoDecisoes.Push(entrada);
     }
 
-    // ──────────────────────────────────────────────────────────────────────────
     //  Consultas
-    // ──────────────────────────────────────────────────────────────────────────
 
     /// <summary>
     /// Retorna um dicionário nome → total de revisões para exibição de estatísticas.
