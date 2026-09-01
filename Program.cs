@@ -6,13 +6,9 @@ namespace RevisaoCodigoApp;
 
 class Program
 {
-    // ─── Estado global em memória ────────────────────────────────────────────
+    // Estado global em memória 
     static readonly PainelRevisoes<SolicitacaoMudanca> Painel = new();
 
-    // Referência às revisões em andamento para facilitar operações por índice
-    // (a List<Revisao> já vive dentro de Painel.RevisoesRealizadas)
-
-    // ────────────────────────────────────────────────────────────────────────
     static void Main()
     {
         Console.OutputEncoding = System.Text.Encoding.UTF8;
@@ -31,9 +27,7 @@ class Program
         Console.WriteLine("\nEncerrando o sistema. Até logo!");
     }
 
-    // ────────────────────────────────────────────────────────────────────────
     //  Banner e Menu
-    // ────────────────────────────────────────────────────────────────────────
 
     static void ExibirBanner()
     {
@@ -64,9 +58,7 @@ class Program
         Console.WriteLine("└─────────────────────────────────────────────────────┘");
     }
 
-    // ────────────────────────────────────────────────────────────────────────
     //  Dispatcher de opções
-    // ────────────────────────────────────────────────────────────────────────
 
     static bool ProcessarOpcao(string opcao)
     {
@@ -95,9 +87,7 @@ class Program
         return true;
     }
 
-    // ────────────────────────────────────────────────────────────────────────
     //  1 — Cadastrar desenvolvedor
-    // ────────────────────────────────────────────────────────────────────────
 
     static void CadastrarDesenvolvedor()
     {
@@ -110,9 +100,7 @@ class Program
         Ok($"Desenvolvedor cadastrado com sucesso! {dev}");
     }
 
-    // ────────────────────────────────────────────────────────────────────────
     //  2 — Criar solicitação de mudança
-    // ────────────────────────────────────────────────────────────────────────
 
     static void CriarSolicitacao()
     {
@@ -163,9 +151,7 @@ class Program
         Console.WriteLine($"\nAvaliação automática:\n  {solicitacao.Avaliar()}");
     }
 
-    // ────────────────────────────────────────────────────────────────────────
     //  3 — Adicionar etiquetas
-    // ────────────────────────────────────────────────────────────────────────
 
     static void AdicionarEtiquetas()
     {
@@ -187,9 +173,7 @@ class Program
         Ok($"{adicionadas} etiqueta(s) adicionada(s). Etiquetas atuais: [{string.Join(", ", sol.Etiquetas)}]");
     }
 
-    // ────────────────────────────────────────────────────────────────────────
     //  4 — Enviar para fila de revisão
-    // ────────────────────────────────────────────────────────────────────────
 
     static void EnviarParaFila()
     {
@@ -227,9 +211,7 @@ class Program
         Ok($"Solicitação enviada para fila! Fila atual: {Painel.FilaEspera.Count} item(s).");
     }
 
-    // ────────────────────────────────────────────────────────────────────────
     //  5 — Atribuir próxima da fila a um revisor
-    // ────────────────────────────────────────────────────────────────────────
 
     static void AtribuirProxima()
     {
@@ -261,9 +243,7 @@ class Program
         Ok($"Revisão criada! {revisao}");
     }
 
-    // ────────────────────────────────────────────────────────────────────────
     //  6 — Adicionar comentário à revisão
-    // ────────────────────────────────────────────────────────────────────────
 
     static void AdicionarComentario()
     {
@@ -287,9 +267,7 @@ class Program
         Ok($"Comentário adicionado à revisão #{revisao.Id}. Total: {revisao.Comentarios.Count} comentário(s).");
     }
 
-    // ────────────────────────────────────────────────────────────────────────
     //  7 — Registrar decisão de revisão
-    // ────────────────────────────────────────────────────────────────────────
 
     static void RegistrarDecisao()
     {
@@ -329,9 +307,7 @@ class Program
         Ok($"Decisão registrada! Novo status da solicitação: {revisao.Solicitacao.Status}");
     }
 
-    // ────────────────────────────────────────────────────────────────────────
     //  8 — Exibir histórico de decisões (Stack — ordem reversa)
-    // ────────────────────────────────────────────────────────────────────────
 
     static void ExibirHistorico()
     {
@@ -348,9 +324,7 @@ class Program
             Console.WriteLine($"  {i++}. {entrada}");
     }
 
-    // ────────────────────────────────────────────────────────────────────────
     //  9 — Estatísticas de revisores
-    // ────────────────────────────────────────────────────────────────────────
 
     static void ExibirEstatisticas()
     {
@@ -370,9 +344,7 @@ class Program
             Console.WriteLine($"  {nome,-25} {total,10}");
     }
 
-    // ────────────────────────────────────────────────────────────────────────
     //  10 — Listar solicitações
-    // ────────────────────────────────────────────────────────────────────────
 
     static void ListarSolicitacoes()
     {
@@ -393,9 +365,7 @@ class Program
         }
     }
 
-    // ────────────────────────────────────────────────────────────────────────
     //  11 — Listar revisões
-    // ────────────────────────────────────────────────────────────────────────
 
     static void ListarRevisoes()
     {
@@ -419,9 +389,7 @@ class Program
         }
     }
 
-    // ────────────────────────────────────────────────────────────────────────
     //  Helpers de seleção
-    // ────────────────────────────────────────────────────────────────────────
 
     static SolicitacaoMudanca? SelecionarSolicitacao()
     {
@@ -479,9 +447,7 @@ class Program
         Console.WriteLine();
     }
 
-    // ────────────────────────────────────────────────────────────────────────
     //  Dados de demonstração pré-carregados
-    // ────────────────────────────────────────────────────────────────────────
 
     static void CarregarDadosDemonstracao()
     {
@@ -521,9 +487,7 @@ class Program
         Painel.RegistrarSolicitacao(refactor);
     }
 
-    // ────────────────────────────────────────────────────────────────────────
     //  Utilitários de I/O
-    // ────────────────────────────────────────────────────────────────────────
 
     static string LerLinha(string prompt)
     {
