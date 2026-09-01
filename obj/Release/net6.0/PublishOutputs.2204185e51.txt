@@ -1,5 +1,0 @@
-/Users/arthurfranchi/Desktop/cs_development_cp04/RevisaoCodigoApp/bin/Release/net6.0/publish/RevisaoCodigoApp
-/Users/arthurfranchi/Desktop/cs_development_cp04/RevisaoCodigoApp/bin/Release/net6.0/publish/RevisaoCodigoApp.dll
-/Users/arthurfranchi/Desktop/cs_development_cp04/RevisaoCodigoApp/bin/Release/net6.0/publish/RevisaoCodigoApp.deps.json
-/Users/arthurfranchi/Desktop/cs_development_cp04/RevisaoCodigoApp/bin/Release/net6.0/publish/RevisaoCodigoApp.runtimeconfig.json
-/Users/arthurfranchi/Desktop/cs_development_cp04/RevisaoCodigoApp/bin/Release/net6.0/publish/RevisaoCodigoApp.pdb
